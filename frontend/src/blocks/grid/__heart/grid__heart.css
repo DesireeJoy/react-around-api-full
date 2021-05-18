@@ -1,0 +1,18 @@
+.grid__heart {
+  background: url("../../../images/emptyHeart.svg") center no-repeat;
+  width: 21px;
+  min-height: 19px;
+  background-size: contain;
+  padding: 0;
+  margin: auto 0;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.grid__heart:hover {
+  opacity: 0.5;
+}

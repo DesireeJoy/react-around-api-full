@@ -1,0 +1,6 @@
+.popup__image_cont {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: 90px auto 0 auto;
+}

@@ -1,0 +1,6 @@
+.grid__likes {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  align-items: center;
+}

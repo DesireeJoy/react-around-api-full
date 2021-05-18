@@ -1,0 +1,18 @@
+@import url("./popup__toolTip-container.css");
+@import url("./popup__toolTip-image.css");
+@import url("./popup__toolTip-message.css");
+
+.popup__toolTip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 495px;
+  margin: auto;
+}
+
+@media screen and (max-width: 580px) {
+  .popup__toolTip {
+    width: auto;
+  }
+}

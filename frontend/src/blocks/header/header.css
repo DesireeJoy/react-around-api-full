@@ -1,0 +1,14 @@
+@import url("./__logo/header__logo.css");
+@import url("./__nav/header__nav.css");
+@import url("./__link/header__link.css");
+@import url("./__email/header__email.css");
+
+.header {
+  margin: 0;
+  border-bottom: 1px solid rgb(84, 84, 84, 0.7);
+  min-height: 74px;
+  margin-top: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

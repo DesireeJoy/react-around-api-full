@@ -1,0 +1,15 @@
+.login__link-register {
+  text-align: center;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  margin: 0;
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .login__link-register {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

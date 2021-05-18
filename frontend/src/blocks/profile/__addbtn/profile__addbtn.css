@@ -1,0 +1,23 @@
+.profile__addbtn {
+  width: 150px;
+  height: 50px;
+  border: 2px solid #ffffff;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 22px;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  background-image: url("../../../images/plus.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 618px) {
+  .profile__addbtn {
+    width: 282px;
+  }
+}

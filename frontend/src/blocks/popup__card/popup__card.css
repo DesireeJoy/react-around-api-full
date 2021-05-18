@@ -1,0 +1,14 @@
+@import url("./__submit/popup__card_submit.css");
+@import url("./__input/popup__card_input.css");
+@import url("./__heading/popup__card_heading.css");
+@import url("./__submit/popup__delete_submit.css");
+
+.popup__card {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

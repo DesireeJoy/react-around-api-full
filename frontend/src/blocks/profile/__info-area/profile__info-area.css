@@ -1,0 +1,19 @@
+.profile__info-area {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 945px) {
+  .profile__info-area {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

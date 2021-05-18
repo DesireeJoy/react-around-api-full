@@ -1,0 +1,16 @@
+.grid__btn_del {
+  display: block;
+  height: 19px;
+  width: 18px;
+  background-size: cover;
+  background-image: url("../../../images/Trash.svg");
+  background-color: unset;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

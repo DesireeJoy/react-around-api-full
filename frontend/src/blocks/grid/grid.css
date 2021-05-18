@@ -1,0 +1,30 @@
+@import url("./__card/grid__card.css");
+@import url("./__image/grid__image.css");
+@import url("./__list/grid__list.css");
+@import url("./__caption/grid__caption.css");
+@import url("./__card-text/grid__card-text.css");
+@import url("./__heart/grid__heart.css");
+@import url("./__btn_del/_hidden/grid__btn_del_hidden.css");
+@import url("./__btn_del/grid__btn_del.css");
+@import url("./__btn_popup/grid__btn_popup.css");
+@import url("./__image/_active/grid__image_active.css");
+@import url("./__likes/grid__likes.css");
+.grid {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 940px) {
+  .grid {
+    margin: min(19px, 5%);
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .grid {
+    margin: 0 19px;
+  }
+}

@@ -1,0 +1,36 @@
+.popup__delete_submit {
+  display: block;
+  color: white;
+  width: 100%;
+  border: none;
+  margin: 0 0 0 0;
+  height: 50.15px;
+  background: hsl(0, 0%, 0%);
+  border-radius: 2px;
+  color: white;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.popup__delete_submit:hover {
+  opacity: 0.8;
+}
+@media screen and (max-width: 800px) {
+  .popup__card_submit {
+    height: 46px;
+    margin: 36px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .popup__delete_submit {
+    min-width: 200px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

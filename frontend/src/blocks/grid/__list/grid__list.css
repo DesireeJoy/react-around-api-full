@@ -1,0 +1,16 @@
+.grid__list {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1184px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 282px);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 20px 17px;
+  text-decoration: none;
+  list-style: none;
+  justify-content: center;
+}

@@ -1,0 +1,13 @@
+.grid__image_active {
+  margin: 0;
+  border-radius: 0;
+  width: auto;
+  max-height: 540px;
+}
+
+@media screen and (max-width: 450px) {
+  .grid__image_active {
+    width: auto;
+    max-height: 299px;
+  }
+}

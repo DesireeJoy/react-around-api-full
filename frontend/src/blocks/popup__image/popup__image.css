@@ -1,0 +1,12 @@
+@import url("../popup__image/__close/popup__image_close.css");
+@import url("../popup__image/_capt/popup__image_capt.css");
+
+.popup__image {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

@@ -1,0 +1,14 @@
+.login__register {
+  margin: 0;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+  .login__register {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

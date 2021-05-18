@@ -1,0 +1,20 @@
+@import url("./__form/popup__form.css");
+@import url("./__submit/popup__submit.css");
+@import url("./__input/popup__input.css");
+@import url("./__close/popup__close.css");
+@import url("./__heading/popup__heading.css");
+@import url("./__form/_input_type/popup__form_input_type_active.css");
+@import url("./__form/_input_type/popup__form_input_type_error.css");
+@import url("./__image/_cont/popup__image_cont.css");
+@import url("./__image/_wrap/popup__image_wrap.css");
+@import url("./__toolTip/popup__toolTip.css");
+
+.popup {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}

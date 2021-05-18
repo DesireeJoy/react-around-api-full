@@ -1,0 +1,7 @@
+.grid__heart_active {
+  width: 21px;
+  height: 19px;
+  background-size: contain;
+  opacity: 1;
+  background: url("../../../../images/fullHeart.svg") center no-repeat;
+}

@@ -1,0 +1,14 @@
+.popup__card_heading {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 54px;
+  text-align: left;
+}
+@media screen and (max-width: 450px) {
+  .popup__card_heading {
+    margin-bottom: 36px;
+  }
+}

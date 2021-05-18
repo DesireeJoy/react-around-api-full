@@ -1,0 +1,16 @@
+.popup__toolTip-container {
+  width: 430px;
+  height: 330px;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 580px) {
+  .popup__toolTip-container {
+    max-width: 282px;
+    z-index: 2;
+  }
+}
