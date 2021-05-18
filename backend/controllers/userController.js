@@ -28,8 +28,8 @@ function getOneUser(req, res) {
 }
 
 function createUser(req, res) {
-  const { name, about, avatar } = req.body;
-  return User.create({ name, about, avatar })
+  const { name, about, avatar, email, password } = req.body;
+  return User.create({ name, about, avatar, email, password })
     .then((user) => {
       res.status(200).send(user);
     })
@@ -48,7 +48,7 @@ function updateUser(req, res) {
     {
       new: true,
       runValidators: true,
-    },
+    }
   )
     .then((user) => {
       if (!user) {
