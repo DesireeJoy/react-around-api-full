@@ -3,9 +3,6 @@ class Api {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
-  _checkResponse(res) {
-    return res.ok ? res.json() : Promise.reject("Error!" + res.statusText);
-  }
 
   getInitialCards() {
     return fetch(this._baseUrl + "/cards", {
@@ -16,7 +13,7 @@ class Api {
     return res.ok ? res.json() : Promise.reject("Error!" + res.statusText);
   }
 
-  //GET https://around.nomoreparties.co/v1/groupId/users/me
+  //GET http://localhost:3000/users/me
   getUserInfo() {
     return fetch(this._baseUrl + "/users/me", {
       headers: this._headers,
@@ -26,7 +23,7 @@ class Api {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 
-  //PATCH https://around.nomoreparties.co/v1/groupId/users/me
+  //PATCH http://localhost:3000/users/me
   setUserInfo({ name, about }) {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
@@ -37,7 +34,7 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
-  //POST https://around.nomoreparties.co/v1/groupId/cards
+  //POST http://localhost:3000/cards
   addCard({ name, link }) {
     return fetch(this._baseUrl + "/cards", {
       method: "POST",
@@ -55,7 +52,7 @@ class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
-  //PATCH https://around.nomoreparties.co/v1/groupId/users/me/avatar
+  //PATCH http://localhost:3000/users/me/avatar
   setAvatar({ avatar }) {
     return fetch(this._baseUrl + "/users/me/avatar", {
       method: "PATCH",
@@ -65,8 +62,8 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
-  // PUT https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
-  // DELETE https://around.nomoreparties.co/v1/groupId/cards/likes/cardId
+  // PUT http://localhost:3000/cards/likes/cardId
+  // DELETE http://localhost:3000/cards/likes/cardId
   changeLikeCardStatus(cardId, like) {
     //PUT AND DELETE
     const whichMethod = like ? "DELETE" : "PUT";

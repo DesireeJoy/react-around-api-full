@@ -1,6 +1,4 @@
-import logo from "../images/Logo.svg";
 import React, { useState, useEffect, createContext } from "react";
-import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Card(props) {
