@@ -20,6 +20,7 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
+  console.log("This is happening, authorize");
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
@@ -33,8 +34,10 @@ export const authorize = (email, password) => {
     })
     .then((data) => {
       if (data.message) {
-        console.log(data.message);
+        console.log("this is tha message " + data.message);
+        return;
       }
+      console.log("authorize worked");
       localStorage.setItem("token", data.token);
       return;
     });
