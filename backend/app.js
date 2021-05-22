@@ -39,7 +39,11 @@ const {
 const { auth } = require("./middleware/auth");
 
 // listen to port 3000
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, ENV } = process.env;
+require("dotenv").config();
+
+console.log(process.env.NODE_ENV); // production
+
 const app = express();
 
 app.use(cors());

@@ -115,8 +115,8 @@ function updateUser(req, res) {
 
 function login(req, res, next) {
   const { email, password } = req.body;
-  console.log(req.body);
-  User.findOne(req.body)
+  console.log("email is listed as " + email);
+  User.findOne({ email })
     .select("password")
     .then((user) => {
       if (!user) {
@@ -126,7 +126,7 @@ function login(req, res, next) {
       return bcrypt.compare(password, user.password).then((match) => {
         if (!match) {
           return Promise.reject(
-            new InvalidError("BIncorrect password or email")
+            new InvalidError("Incorrect password or email")
           );
         }
         const token = jwt.sign(
