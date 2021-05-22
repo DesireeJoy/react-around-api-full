@@ -62,6 +62,7 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
+
   // PUT http://localhost:3000/cards/likes/cardId
   // DELETE http://localhost:3000/cards/likes/cardId
   changeLikeCardStatus(cardId, like) {

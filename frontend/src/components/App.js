@@ -40,6 +40,11 @@ function App() {
   const [toolTipImage, setToolTipImage] = React.useState("");
   const history = useHistory();
 
+  React.useEffect(() => {
+    //debugger;
+    handleCheckToken();
+  }, []);
+
   function handleDeleteConfirm(e) {
     e.preventDefault();
     setIsDeleteOpen(false);
@@ -163,12 +168,14 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        if (!res) {
-          setToolTipMessage("Your login has failed.");
-          setToolTipImage(rejectIcon);
-          setIsInfoToolTipOpen(true);
-        }
+        console.log("Email is " + email);
+        // if (!res) {
+        //   setToolTipMessage("Your login has failed.");
+        //   setToolTipImage(rejectIcon);
+        //   setIsInfoToolTipOpen(true);
+        // }
         handleCheckToken();
+        history.push("/");
       })
       .catch((res) => {
         if (res === 400) {
@@ -185,7 +192,7 @@ function App() {
       .register(email, password)
       .then((res) => {
         if (!res) {
-          setToolTipMessage("One of the fields was filled incorrectly");
+          setToolTipMessage("One of the fields was filled out incorrectly");
           setToolTipImage(rejectIcon);
           setIsInfoToolTipOpen(true);
         } else {
@@ -209,6 +216,7 @@ function App() {
 
   function handleCheckToken() {
     const jwt = localStorage.getItem("jwt");
+    console.log("JWT is " + jwt);
     if (typeof jwt !== undefined) {
       auth
         .checkToken(jwt)

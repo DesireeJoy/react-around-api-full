@@ -1,4 +1,12 @@
 const User = require("../models/user");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const {
+  NotFoundError,
+  InvalidError,
+  AuthError,
+  MongoError,
+} = require("../middleware/errorHandling");
 
 function getUsers(req, res) {
   return User.find({})
@@ -27,19 +35,58 @@ function getOneUser(req, res) {
     });
 }
 
-function createUser(req, res) {
-  const { name, about, avatar, email, password } = req.body;
-  return User.create({ name, about, avatar, email, password })
+function getCurrentUser(req, res, next) {
+  console.log("user", req.user);
+  return User.findById(req.user._id)
     .then((user) => {
-      res.status(200).send(user);
-    })
-    .catch((err) => {
-      if (err.name === "ValidationError") {
-        return res.status(400).send(err.message);
+      //console.log(user);
+      if (user) {
+        return res.status(200).send(user);
       }
-      return res.status(500).send({ message: "Internal Server Error" });
-    });
+      throw new NotFoundError("User not found");
+    })
+    .catch(next);
 }
+
+function createUser(req, res, next) {
+  const { name, about, avatar, email, password } = req.body;
+  bcrypt
+    .hash(password, 10)
+    .then((hash) =>
+      User.create({
+        name,
+        about,
+        avatar,
+        email,
+        password: hash,
+      })
+    )
+    .then((user) =>
+      res
+        .send({
+          name: user.name,
+          about: user.about,
+          avatar: user.avatar,
+          email: user.email,
+        })
+        .then((data) => {
+          console.log("THis data in userController is " + data);
+        })
+    )
+    .catch((err) => {
+      if (err.code === 11000 && err.name === "MongoError") {
+        throw new MongoError("Duplicate email");
+      }
+      if (err.name === "ValidationError") {
+        throw new InvalidError("Invalid user");
+      }
+      if (err.name === "NotFound") {
+        throw new NotFoundError("User not found");
+      }
+    })
+    .catch(next);
+}
+
 function updateUser(req, res) {
   const { name, about } = req.body;
   User.findByIdAndUpdate(
@@ -65,6 +112,39 @@ function updateUser(req, res) {
       return res.status(500).send({ message: "Internal Server Error" });
     });
 }
+
+function login(req, res, next) {
+  const { email, password } = req.body;
+  console.log(req.body);
+  User.findOne(req.body)
+    .select("password")
+    .then((user) => {
+      if (!user) {
+        return Promise.reject(new InvalidError("Incorrect password or email"));
+      }
+      console.log(user);
+      return bcrypt.compare(password, user.password).then((match) => {
+        if (!match) {
+          return Promise.reject(
+            new InvalidError("BIncorrect password or email")
+          );
+        }
+        const token = jwt.sign(
+          { _id: user._id },
+          NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+          { expiresIn: "7d" }
+        );
+
+        res.send({ token });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      throw new AuthError("Authorization Error");
+    })
+    .catch(next);
+}
+
 function updateAvatar(req, res) {
   const { avatar } = req.body;
   return User.findByIdAndUpdate(
@@ -90,8 +170,10 @@ function updateAvatar(req, res) {
 
 module.exports = {
   getOneUser,
+  getCurrentUser,
   getUsers,
   createUser,
   updateUser,
   updateAvatar,
+  login,
 };

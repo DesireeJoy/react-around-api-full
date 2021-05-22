@@ -8,12 +8,15 @@ export const register = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    console.log(res);
-    if (res.status === 201) {
-      return res.json();
-    }
-  });
+  })
+    .then((res) => {
+      if (res.status === 201 || res.status === 200) {
+        return res.json();
+      }
+    })
+    .catch((err) => {
+      console.log("THis is dumb " + err);
+    });
 };
 
 export const authorize = (email, password) => {
@@ -29,22 +32,22 @@ export const authorize = (email, password) => {
       return res.json();
     })
     .then((data) => {
-      if (data.token) {
-        localStorage.setItem("jwt", data.token);
-        return data;
-      } else {
-        return;
+      if (data.message) {
+        console.log(data.message);
       }
+      localStorage.setItem("token", data.token);
+      return;
     });
 };
 
 export const checkToken = (token) => {
+  console.log("Running Check Token in the utils folder");
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `token=${token}`,
     },
   })
     .then((res) => {

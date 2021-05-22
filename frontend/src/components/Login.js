@@ -11,10 +11,13 @@ function Login(props) {
     if (!email || !password) {
       return;
     }
+
     props.handleLogin(email, password);
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       history.push("/");
+    } else {
+      console.log("No jwt");
     }
   }
 

@@ -2,10 +2,10 @@
   "name": "around-express",
   "version": "1.0.0",
   "description": "Desiree's Express Project for Practicum",
-  "main": "index.js",
+  "main": "backend/app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -29,11 +29,18 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "celebrate": "^14.0.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-list-routes": "^1.1.3",
     "express-rate-limit": "^5.2.6",
+    "express-winston": "^4.1.0",
     "helmet": "^4.5.0",
-    "mongoose": "^5.12.5"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.5",
+    "winston": "^3.3.3"
   }
 }

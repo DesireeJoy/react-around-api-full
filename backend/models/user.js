@@ -7,14 +7,14 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 2,
     maxlength: 30,
-    default: 'Jacques Cousteau',
+    default: "Jacques Cousteau",
   },
   about: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 30,
-    default: 'Explorer',
+    default: "Explorer",
   },
   avatar: {
     type: String,
@@ -27,25 +27,24 @@ const userSchema = new mongoose.Schema({
       },
       message: "Invalid link",
     },
-    default: 'link:',
+    default: "https://pictures.s3.yandex.net/resources/avatar_1604080799.jpg",
   },
   email: {
     type: String,
     required: true,
     unique: true,
     validate: {
-      validator(v){
-      return validator.isEmail(v);
-    }
-    message: 'Invalid email',
-    }
+      validator(v) {
+        return validator.isEmail(v);
+      },
+      message: "Invalid email",
+    },
   },
   password: {
     type: String,
     required: true,
     minlength: 8,
     select: false,
-
   },
 });
 module.exports = mongoose.model("user", userSchema);
