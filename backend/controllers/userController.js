@@ -8,6 +8,8 @@ const {
   MongoError,
 } = require("../middleware/errorHandling");
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 function getUsers(req, res) {
   return User.find({})
     .then((users) => {
