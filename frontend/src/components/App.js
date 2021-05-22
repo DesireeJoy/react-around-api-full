@@ -168,7 +168,6 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        console.log("Email is " + email);
         // if (!res) {
         //   setToolTipMessage("Your login has failed.");
         //   setToolTipImage(rejectIcon);
@@ -179,7 +178,7 @@ function App() {
       })
       .catch((res) => {
         if (res === 400) {
-          console.log("A fields was completed incorrectly");
+          console.log("A field was completed incorrectly");
         }
         if (res === 401) {
           console.log("user email not found");
@@ -208,22 +207,22 @@ function App() {
   }
 
   function handleSignOut() {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("token");
     setLoggedIn(false);
     setUserEmail("");
     history.push("/signin");
   }
 
   function handleCheckToken() {
-    const jwt = localStorage.getItem("jwt");
-    console.log("JWT is " + jwt);
+    const jwt = localStorage.getItem("token");
+
     if (typeof jwt !== undefined) {
       auth
         .checkToken(jwt)
         .then((res) => {
           if (res) {
-            const userEmail = res.data.email;
-            setUserEmail(userEmail);
+            const usersEmail = res.email;
+            setUserEmail(usersEmail);
             setLoggedIn(true);
             history.push("/");
           }

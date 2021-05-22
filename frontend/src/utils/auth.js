@@ -1,4 +1,5 @@
-export const BASE_URL = "http://localhost:3000";
+// export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "http://desireejoy.students.nomoreparties.site/";
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -15,12 +16,11 @@ export const register = (email, password) => {
       }
     })
     .catch((err) => {
-      console.log("THis is dumb " + err);
+      console.log(err);
     });
 };
 
 export const authorize = (email, password) => {
-  console.log("This is happening, authorize");
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
@@ -34,17 +34,15 @@ export const authorize = (email, password) => {
     })
     .then((data) => {
       if (data.message) {
-        console.log("this is tha message " + data.message);
         return;
       }
-      console.log("authorize worked");
       localStorage.setItem("token", data.token);
+
       return;
     });
 };
 
 export const checkToken = (token) => {
-  console.log("Running Check Token in the utils folder");
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
