@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "df7ead1470f5f00febb7",
+    "revision": "931b78898277867ce8b2",
     "url": "/static/css/main.f1938683.chunk.css"
   },
   {
-    "revision": "df7ead1470f5f00febb7",
-    "url": "/static/js/main.0e2cc461.chunk.js"
+    "revision": "931b78898277867ce8b2",
+    "url": "/static/js/main.8ee2d81c.chunk.js"
   },
   {
     "revision": "4282d7409447a136f87b",
@@ -28,6 +28,10 @@ self.__precacheManifest = [
     "url": "/static/media/Inter-Regular.80709976.woff2"
   },
   {
+    "revision": "14d1275c67676cc5d911232d0c890d97",
+    "url": "/static/media/Inter-Regular.14d1275c.woff"
+  },
+  {
     "revision": "46d7404e4a2eb3cd2ff9bc83023e259c",
     "url": "/static/media/Inter-Medium.46d7404e.woff2"
   },
@@ -40,43 +44,39 @@ self.__precacheManifest = [
     "url": "/static/media/Inter-Medium.5ce3e4db.woff"
   },
   {
-    "revision": "14d1275c67676cc5d911232d0c890d97",
-    "url": "/static/media/Inter-Regular.14d1275c.woff"
+    "revision": "14a450a3d2fd191fcefa23b273baaf14",
+    "url": "/static/media/Inter-Black.14a450a3.woff"
   },
   {
     "revision": "cc94142fda5d45474d24f05af1111838",
     "url": "/static/media/fullHeart.cc94142f.svg"
   },
   {
-    "revision": "6bfdb35467f51d3ba1f70f8d4a9c2b59",
-    "url": "/static/media/Edit.6bfdb354.svg"
-  },
-  {
-    "revision": "14a450a3d2fd191fcefa23b273baaf14",
-    "url": "/static/media/Inter-Black.14a450a3.woff"
-  },
-  {
     "revision": "ab9d1f3eb26aea8c4155a587f079a14e",
     "url": "/static/media/emptyHeart.ab9d1f3e.svg"
-  },
-  {
-    "revision": "d476a8b86d0b656cfa463c1148e96069",
-    "url": "/static/media/EditAvatar.d476a8b8.svg"
-  },
-  {
-    "revision": "50db913166aa65531fd45d0b53734625",
-    "url": "/static/media/close-icon.50db9131.svg"
   },
   {
     "revision": "4220563aa7e7f6bb1d562a95174678b6",
     "url": "/static/media/Trash.4220563a.svg"
   },
   {
+    "revision": "6bfdb35467f51d3ba1f70f8d4a9c2b59",
+    "url": "/static/media/Edit.6bfdb354.svg"
+  },
+  {
     "revision": "b2fce4ac45f3d116cd48ec8d068ab723",
     "url": "/static/media/plus.b2fce4ac.svg"
   },
   {
-    "revision": "e7aa1fbd25d070c1206d76b3946dcded",
+    "revision": "50db913166aa65531fd45d0b53734625",
+    "url": "/static/media/close-icon.50db9131.svg"
+  },
+  {
+    "revision": "d476a8b86d0b656cfa463c1148e96069",
+    "url": "/static/media/EditAvatar.d476a8b8.svg"
+  },
+  {
+    "revision": "d5a16fc68911b2bd0591b6dab9937971",
     "url": "/index.html"
   }
 ];

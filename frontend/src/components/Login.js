@@ -16,8 +16,6 @@ function Login(props) {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       history.push("/");
-    } else {
-      console.log("No jwt");
     }
   }
 
