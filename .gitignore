@@ -1,7 +1,8 @@
 node_modules
 *.log
 npm-debug.log
-
+build/*
+!build/build.xml
 .npm
 
 .DS_Store

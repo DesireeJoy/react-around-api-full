@@ -39,10 +39,9 @@ const {
 const { auth } = require("./middleware/auth");
 
 // listen to port 3000
-const { PORT = 3000, ENV } = process.env;
+const { PORT = 3000 } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
 require("dotenv").config();
-
-console.log(process.env.NODE_ENV); // production
 
 const app = express();
 
@@ -79,10 +78,10 @@ app.post(
   }),
   createUser
 );
+app.get("/users/me", auth, getCurrentUser);
 app.use("/users", auth, usersRouter);
 app.use("/cards", auth, cardsRouter);
 
-app.get("/users/me", auth, getCurrentUser);
 app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");
@@ -111,7 +110,6 @@ app.use(errorLogger); // enabling the error logger
 app.use(helmet());
 app.use(errors());
 app.use((err, req, res, next) => {
-  // console.log(err.statusCode);
   const { statusCode = 500, message } = err;
   res.send({
     message:

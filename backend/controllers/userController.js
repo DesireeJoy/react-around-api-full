@@ -38,10 +38,8 @@ function getOneUser(req, res) {
 }
 
 function getCurrentUser(req, res, next) {
-  console.log("user", req.user);
   return User.findById(req.user._id)
     .then((user) => {
-      //console.log(user);
       if (user) {
         return res.status(200).send(user);
       }
@@ -49,7 +47,6 @@ function getCurrentUser(req, res, next) {
     })
     .catch(next);
 }
-
 function createUser(req, res, next) {
   const { name, about, avatar, email, password } = req.body;
   bcrypt
@@ -64,16 +61,12 @@ function createUser(req, res, next) {
       })
     )
     .then((user) =>
-      res
-        .send({
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar,
-          email: user.email,
-        })
-        .then((data) => {
-          console.log("THis data in userController is " + data);
-        })
+      res.send({
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        email: user.email,
+      })
     )
     .catch((err) => {
       if (err.code === 11000 && err.name === "MongoError") {
@@ -88,6 +81,39 @@ function createUser(req, res, next) {
     })
     .catch(next);
 }
+// function createUser(req, res, next) {
+//   const { name, about, avatar, email, password } = req.body;
+//   bcrypt
+//     .hash(password, 10)
+//     .then((hash) =>
+//       User.create({
+//         name,
+//         about,
+//         avatar,
+//         email,
+//         password: hash,
+//       })
+//     )
+//     .then((user) =>
+//       res
+//         .send({
+//           name: user.name,
+//           about: user.about,
+//           avatar: user.avatar,
+//           email: user.email,
+//         }))
+//         .catch((err) => {
+//       if (err.code === 11000 && err.name === "MongoError") {
+//         throw  MongoError("Duplicate email");
+//       }
+//       if (err.name === "ValidationError") {
+//         throw new InvalidError("Invalid user");
+//       }
+//       if (err.name === "NotFound") {
+//         throw new NotFoundError("User not found");
+//       })
+//     .catch(next);
+// }
 
 function updateUser(req, res) {
   const { name, about } = req.body;
@@ -117,14 +143,13 @@ function updateUser(req, res) {
 
 function login(req, res, next) {
   const { email, password } = req.body;
-  console.log("email is listed as " + email);
-  User.findOne({ email })
+  User.findOne({ email: email })
     .select("password")
     .then((user) => {
       if (!user) {
         return Promise.reject(new InvalidError("Incorrect password or email"));
       }
-      console.log(user);
+
       return bcrypt.compare(password, user.password).then((match) => {
         if (!match) {
           return Promise.reject(

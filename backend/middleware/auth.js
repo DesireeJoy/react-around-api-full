@@ -10,6 +10,7 @@ function auth(req, res, next) {
   if (!authorization || !authorization.startsWith("token=")) {
     throw new AuthError("Authorization required");
   }
+
   const token = authorization.replace("token=", "");
 
   let payload;
