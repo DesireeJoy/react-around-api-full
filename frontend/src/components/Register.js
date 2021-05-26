@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link, withRouter, useHistory } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 function Register(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();

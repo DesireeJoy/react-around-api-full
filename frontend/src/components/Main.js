@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "./Header.js";
-import api from "../utils/api";
 import Card from "./Card";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
@@ -26,7 +25,7 @@ function Main(props) {
           />
           <img
             id="avatar Image"
-            alt="Avatar Image for User"
+            alt="Avatar for User"
             className="profile__avatar"
             src={currentUser.avatar}
           />
