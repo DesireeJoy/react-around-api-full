@@ -19,21 +19,21 @@ function getUsers(req, res) {
 }
 
 function getOneUser(req, res) {
+  e;
   User.findById(req.params.userId)
     .then((user) => {
       if (!user) {
-        return res.status(404).send({ message: "User ID not found" });
+        throw new NotFound("User Not Found");
       }
       return res.status(200).send({ data: user });
     })
     .catch((err) => {
       if (err.name === "CastError") {
-        return res.status(400).send({ message: "Invalid user" });
+        throw new InvalidError("Invalid user");
       }
       if (err.name === "NotFound") {
-        return res.status(404).send({ message: "User not found" });
+        throw new NotFound("User Not Found");
       }
-      return res.status(500).send({ message: "Error" });
     });
 }
 
@@ -127,7 +127,7 @@ function updateUser(req, res) {
   )
     .then((user) => {
       if (!user) {
-        res.status(404).send({ message: "User not found" });
+        throw new NotFoundError("User not found");
       }
       return res.status(200).send({ data: user });
     })
@@ -181,17 +181,20 @@ function updateAvatar(req, res) {
   )
     .then((user) => {
       if (!user) {
-        res.status(404).send({ message: "User not found" });
+        throw new NotFoundError("User not found");
       }
       return res.status(200).send({ data: user });
     })
     .catch((err) => {
-      if (err.name === "CastError") {
-        return res
-          .status(400)
-          .send({ message: "This is not the card you are looking for" });
+      if (req.body === null) {
+        throw new InvalidError("Empty request");
       }
-      return res.status(500).send({ message: "Internal Server Error" });
+      if (err.name === "CastError") {
+        throw new InvalidError("Invalid user");
+      }
+      if (err.name === "NotFound") {
+        throw new NotFoundError("User not found");
+      }
     });
 }
 

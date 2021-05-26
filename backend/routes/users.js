@@ -1,6 +1,11 @@
 const router = require("express").Router();
 const { celebrate, Joi } = require("celebrate");
 const { auth } = require("../middleware/auth");
+const validator = require("validator");
+
+function validateUrl(string) {
+  return validator.isURL(string);
+}
 
 // const path = require("path");
 // const fs = require("fs").promises;
@@ -62,7 +67,7 @@ router.patch(
   auth,
   celebrate({
     body: Joi.object().keys({
-      avatar: Joi.string().required().uri(),
+      avatar: Joi.string().required(),
     }),
   }),
   updateAvatar
@@ -72,8 +77,8 @@ router.patch(
   auth,
   celebrate({
     body: Joi.object().keys({
-      name: Joi.string().required().min(2).max(30),
-      about: Joi.string().required().min(2).max(30),
+      name: Joi.string().required().min(2).hex().max(30),
+      about: Joi.string().custom(validateUrl).required().min(2).max(30),
     }),
   }),
   updateUser

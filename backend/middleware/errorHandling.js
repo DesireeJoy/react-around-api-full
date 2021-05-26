@@ -4,6 +4,12 @@ class NotFoundError extends Error {
     this.statusCode = 404;
   }
 }
+class NoReAuthError extends Error {
+  constructor(message) {
+    super(message);
+    this.statusCode = 403;
+  }
+}
 
 class InvalidError extends Error {
   constructor(message) {
@@ -31,4 +37,5 @@ module.exports = {
   InvalidError,
   AuthError,
   MongoError,
+  NoReAuthError,
 };

@@ -1,4 +1,9 @@
 const Card = require("../models/card");
+const {
+  NotFoundError,
+  InvalidError,
+  NoReAuthError,
+} = require("../middleware/errorHandling");
 
 function getCards(req, res) {
   Card.find({})
@@ -12,15 +17,18 @@ const deleteCard = (req, res) => {
   Card.findByIdAndRemove(req.params.cardId)
     .then((card) => {
       if (!card) {
-        return res.status(404).send({ message: "Card Not Found" });
+        throw new NotFoundError("Card not found");
+      }
+      if (card.owner != req.user._id) {
+        throw new NoReAuthError("Cards can only be deleted by the card owner");
       }
       return res.status(200).send({ message: "Card Deleted" });
     })
     .catch((err) => {
-      if (err.name === "ValidationError") {
-        return res.status(500).send({ message: "Internal Server Error" });
+      if (err.name === "NotFound") {
+        throw new NotFoundError("Card not found");
       }
-      return res.status(400).send({ message: "invalid Data" });
+      throw new InvalidError("Invalid data");
     });
 };
 
@@ -36,16 +44,16 @@ const createCard = (req, res) => {
     })
     .catch((err) => {
       if (err.name === "ValidationError") {
-        return res.status(400).send({ message: "Invalid data" });
+        throw new InvalidError("Invalid card");
       }
-      return res.status(500).send({ message: "Error" });
-    });
+    })
+    .catch(next);
 };
 const likeCard = (req, res) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $addToSet: { likes: req.user._id } }, // add _id to the array if it's not there yet
-    { new: true },
+    { new: true }
   )
     .then((card) => {
       if (!card) {
@@ -55,34 +63,34 @@ const likeCard = (req, res) => {
     })
     .catch((err) => {
       if (err.name === "CastError") {
-        return res.status(400).send({ message: "Invalid card" });
+        throw new InvalidError("Invalid card");
       }
       if (err.name === "NotFound") {
-        return res.status(404).send({ message: "Card not found" });
+        throw new NotFound("Card Not Found");
       }
-      return res.status(500).send({ message: "Error" });
-    });
+    })
+    .catch(next);
 };
 
 const dislikeCard = (req, res) => {
   Card.findByIdAndUpdate(
     req.params.cardId,
     { $pull: { likes: req.user._id } },
-    { new: true },
+    { new: true }
   )
     .then((card) => {
       if (card) {
         return res.status(200).send(card);
       }
-      return res.status(404).send({ message: "Card not found to dislike" });
+      throw new NotFoundError("Card not found");
     })
     .catch((err) => {
       if (err.name === "CastError") {
-        return res
-          .status(400)
-          .send({ message: "This is not the card you are looking for" });
+        throw new InvalidError("Invalid card");
       }
-      return res.status(500).send({ message: "Internal Server Error" });
+      if (err.name === "NotFound") {
+        throw new NotFoundError("Card not found");
+      }
     });
 };
 

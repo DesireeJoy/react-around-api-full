@@ -9,12 +9,7 @@ const { requestLogger, errorLogger } = require("./middleware/logger");
 const cors = require("cors");
 const { celebrate, Joi } = require("celebrate");
 const { errors } = require("celebrate");
-const {
-  NotFoundError,
-  InvalidError,
-  AuthError,
-  MongoError,
-} = require("./middleware/errorHandling");
+const { NotFoundError } = require("./middleware/errorHandling");
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -40,7 +35,6 @@ const { auth } = require("./middleware/auth");
 
 // listen to port 3000
 const { PORT = 3000 } = process.env;
-const { NODE_ENV, JWT_SECRET } = process.env;
 require("dotenv").config();
 
 const app = express();
@@ -86,18 +80,6 @@ app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Server will crash now");
   }, 0);
-});
-
-app.get("*", (req, res) => {
-  res.status(404).send({ message: "Requested resource not found" });
-});
-
-app.post("*", (req, res) => {
-  res.status(404).send({ message: "Requested resource not found" });
-});
-
-app.delete("*", (req, res) => {
-  res.status(404).send({ message: "Requested resource not found" });
 });
 
 app.use("*", (err) => {
