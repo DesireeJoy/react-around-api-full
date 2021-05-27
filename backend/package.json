@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/DesireeJoy/around-express#readme",
   "devDependencies": {
-    "eslint": "^7.27.0",
+    "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.23.2"
@@ -39,7 +39,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
     "express-winston": "^4.1.0",
-    "helmet": "^4.5.0",
+    "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.5",
     "validator": "^13.6.0",

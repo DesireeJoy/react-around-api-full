@@ -54,12 +54,11 @@ router.get(
   "/:userId",
   auth,
   celebrate({
+    params: Joi.object().keys({
+      userId: Joi.number().integer(),
+    }),
     body: Joi.object().keys({
       email: Joi.string().required().email(),
-      Joi.number()
-        .integer()
-        .min(3)
-        .max(256),
     }),
   }),
   getOneUser
@@ -71,7 +70,7 @@ router.patch(
   auth,
   celebrate({
     body: Joi.object().keys({
-      avatar:  Joi.string().custom(validateUrl).required().min(2).max(30),
+      avatar: Joi.string().custom(validateUrl).required().min(2).max(30),
     }),
   }),
   updateAvatar

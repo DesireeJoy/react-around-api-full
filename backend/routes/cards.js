@@ -1,6 +1,7 @@
 const express = require("express");
 const { celebrate, Joi } = require("celebrate");
 const bodyParser = require("body-parser");
+
 const router = express.Router();
 router.use(bodyParser.json());
 const validator = require("validator");

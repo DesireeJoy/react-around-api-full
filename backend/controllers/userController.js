@@ -126,6 +126,9 @@ function updateUser(req, res) {
     }
   )
     .then((user) => {
+      console.log(req.params.userId);
+      console.log(user);
+      console.log("HEY STUPID");
       if (!user) {
         throw new NotFoundError("User not found");
       }
