@@ -29,6 +29,7 @@
     "eslint-plugin-react": "^7.23.2"
   },
   "dependencies": {
+    "airbnb": "^0.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "celebrate": "^14.0.0",

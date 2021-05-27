@@ -19,7 +19,7 @@ const deleteCard = (req, res) => {
       if (!card) {
         throw new NotFoundError("Card not found");
       }
-      if (card.owner != req.user._id) {
+      if (req.user._id === card.owner._id.toString()) {
         throw new NoReAuthError("Cards can only be deleted by the card owner");
       }
       return res.status(200).send({ message: "Card Deleted" });

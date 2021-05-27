@@ -132,13 +132,20 @@ function updateUser(req, res) {
       return res.status(200).send({ data: user });
     })
     .catch((err) => {
-      if (err.name === "CastError") {
-        return res
-          .status(400)
-          .send({ message: "This is not the card you are looking for" });
+      if (req.body === null) {
+        throw new InvalidError("Empty request");
       }
-      return res.status(500).send({ message: "Internal Server Error" });
-    });
+      if (err.name === "ValidationError") {
+        throw new InvalidError("Invalid user");
+      }
+      if (err.name === "CastError") {
+        throw new InvalidError("Invalid user");
+      }
+      if (err.name === "NotFound") {
+        throw new NotFoundError("User not found");
+      }
+    })
+    .catch(next);
 }
 
 function login(req, res, next) {
