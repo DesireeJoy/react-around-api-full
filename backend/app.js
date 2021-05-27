@@ -91,12 +91,12 @@ app.use("*", (err) => {
 app.use(errorLogger); // enabling the error logger
 app.use(helmet());
 app.use(errors());
+
 app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-  res.send({
-    message:
-      statusCode === 500 ? "An error occurred on the server" : err.message,
+  res.status(err.statusCode).send({
+    message: err.statusCode === 500 ? "Error from server" : err.message,
   });
+  next();
 });
 
 app.listen(PORT, () => {
