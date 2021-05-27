@@ -56,6 +56,10 @@ router.get(
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().required().email(),
+      Joi.number()
+        .integer()
+        .min(3)
+        .max(256),
     }),
   }),
   getOneUser
@@ -67,7 +71,7 @@ router.patch(
   auth,
   celebrate({
     body: Joi.object().keys({
-      avatar: Joi.string().required(),
+      avatar:  Joi.string().custom(validateUrl).required().min(2).max(30),
     }),
   }),
   updateAvatar
