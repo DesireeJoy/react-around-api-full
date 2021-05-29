@@ -55,10 +55,7 @@ router.get(
   auth,
   celebrate({
     params: Joi.object().keys({
-      userId: Joi.number().integer(),
-    }),
-    body: Joi.object().keys({
-      email: Joi.string().required().email(),
+      userId: Joi.string().hex().length(24).required(),
     }),
   }),
   getOneUser

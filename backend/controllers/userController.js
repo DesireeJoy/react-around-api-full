@@ -19,11 +19,10 @@ function getUsers(req, res) {
 }
 
 function getOneUser(req, res) {
-  e;
   User.findById(req.params.userId)
     .then((user) => {
       if (!user) {
-        throw new NotFound("User Not Found");
+        throw new NotFoundError("User Not Found");
       }
       return res.status(200).send({ data: user });
     })
@@ -32,7 +31,7 @@ function getOneUser(req, res) {
         throw new InvalidError("Invalid user");
       }
       if (err.name === "NotFound") {
-        throw new NotFound("User Not Found");
+        throw new NotFoundError("User Not Found");
       }
     });
 }
@@ -126,9 +125,6 @@ function updateUser(req, res) {
     }
   )
     .then((user) => {
-      console.log(req.params.userId);
-      console.log(user);
-      console.log("HEY STUPID");
       if (!user) {
         throw new NotFoundError("User not found");
       }
@@ -148,7 +144,7 @@ function updateUser(req, res) {
         throw new NotFoundError("User not found");
       }
     })
-    .catch(next);
+    .catch();
 }
 
 function login(req, res, next) {
@@ -175,8 +171,7 @@ function login(req, res, next) {
         res.send({ token });
       });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
       throw new AuthError("Authorization Error");
     })
     .catch(next);

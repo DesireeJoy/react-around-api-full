@@ -5,11 +5,14 @@ const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 
-const { requestLogger, errorLogger } = require("./middleware/logger");
+
 const cors = require("cors");
 const { celebrate, Joi } = require("celebrate");
+
 const { errors } = require("celebrate");
+const { requestLogger, errorLogger } = require("./middleware/logger");
 const { NotFoundError } = require("./middleware/errorHandling");
+
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes

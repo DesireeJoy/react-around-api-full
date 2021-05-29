@@ -47,7 +47,7 @@ const createCard = (req, res) => {
         throw new InvalidError("Invalid card");
       }
     })
-    .catch(next);
+    .catch();
 };
 const likeCard = (req, res) => {
   Card.findByIdAndUpdate(
@@ -66,10 +66,10 @@ const likeCard = (req, res) => {
         throw new InvalidError("Invalid card");
       }
       if (err.name === "NotFound") {
-        throw new NotFound("Card Not Found");
+        throw new NotFoundError("Card Not Found");
       }
     })
-    .catch(next);
+    .catch();
 };
 
 const dislikeCard = (req, res) => {

@@ -1,22 +1,28 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "settings": {},
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/*.spec.jsx"],
+      "env": {
+        "jest": true
+      }
     }
+  ]
 }
