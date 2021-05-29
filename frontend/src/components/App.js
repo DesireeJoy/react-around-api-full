@@ -52,30 +52,30 @@ function App() {
     api
       .removeCard(selectedCard._id)
       .then(() => {
-        const newCards = cards.filter((c) => c._id !== selectedCard._id);
+        const newCards = cards.filter(c => c._id !== selectedCard._id);
         setCards(newCards);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
   React.useEffect(() => {
     api
       .getUserInfo()
-      .then((res) => {
+      .then(res => {
         setCurrentUser(res);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }, []);
 
   function handleUpdateUser({ name, about }) {
     api
       .setUserInfo({ name, about })
-      .then((res) => {
+      .then(res => {
         setCurrentUser(res);
       })
       .then(() => {
         setIsEditProfilePopupOpen(false);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
 
   //Open Popups
@@ -96,13 +96,13 @@ function App() {
   function handleUpdateAvatar(avatar) {
     api
       .setAvatar({ avatar })
-      .then((res) => {
+      .then(res => {
         setCurrentUser(res);
       })
       .then(() => {
         setIsEditAvatarPopupOpen(false);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
 
   //Close Popups
@@ -121,35 +121,35 @@ function App() {
   function handleAddPlaceSubmit({ name, link }) {
     api
       .addCard({ name, link })
-      .then((newCard) => {
+      .then(newCard => {
         setCards([newCard, ...cards]);
       })
       .then(() => setIsAddPlaceOpen(false))
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
   React.useEffect(() => {
     handleCheckToken();
     api
       .getInitialCards()
-      .then((res) => {
+      .then(res => {
         setCards(res);
       })
 
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }, []);
 
   function handleCardLike(card) {
     // Check one more time if this card was already liked
 
-    const isLiked = card.likes.some((c) => c._id === currentUser._id);
+    const isLiked = card.likes.some(c => c._id === currentUser._id);
 
     // Send a request to the API and getting the updated card data
     api
       .changeLikeCardStatus(card._id, isLiked)
-      .then((newCard) => {
+      .then(newCard => {
         // Create a new array based on the existing one and put a new card into it
-        const newCards = cards.map((item) =>
-          item._id === card._id ? newCard : item
+        const newCards = cards.map(
+          item => (item._id === card._id ? newCard : item)
         );
 
         // Update the state
@@ -157,7 +157,7 @@ function App() {
 
         return false;
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
   function handleDeleteWarn(card) {
     setSelectedCard(card);
@@ -167,7 +167,7 @@ function App() {
   function handleLogin(email, password) {
     auth
       .authorize(email, password)
-      .then((res) => {
+      .then(() => {
         // if (!res) {
         //   setToolTipMessage("Your login has failed.");
         //   setToolTipImage(rejectIcon);
@@ -176,7 +176,7 @@ function App() {
         handleCheckToken();
         history.push("/");
       })
-      .catch((res) => {
+      .catch(res => {
         if (res === 400) {
           console.log("A field was completed incorrectly");
         }
@@ -189,7 +189,7 @@ function App() {
   function handleRegister(email, password) {
     auth
       .register(email, password)
-      .then((res) => {
+      .then(res => {
         if (!res) {
           setToolTipMessage("One of the fields was filled out incorrectly");
           setToolTipImage(rejectIcon);
@@ -203,7 +203,7 @@ function App() {
           history.push("/signin");
         }
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
 
   function handleSignOut() {
@@ -219,7 +219,7 @@ function App() {
     if (typeof jwt !== undefined) {
       auth
         .checkToken(jwt)
-        .then((res) => {
+        .then(res => {
           if (res) {
             const usersEmail = res.email;
             setUserEmail(usersEmail);
@@ -227,7 +227,7 @@ function App() {
             history.push("/");
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("Err: " + err);
         });
     }

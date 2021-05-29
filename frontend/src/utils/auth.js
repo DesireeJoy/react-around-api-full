@@ -6,16 +6,16 @@ export const register = (email, password) => {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password })
   })
-    .then((res) => {
+    .then(res => {
       if (res.status === 201 || res.status === 200) {
         return res.json();
       }
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
 };
@@ -25,14 +25,14 @@ export const authorize = (email, password) => {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password })
   })
-    .then((res) => {
+    .then(res => {
       return res.json();
     })
-    .then((data) => {
+    .then(data => {
       if (data.message) {
         return;
       }
@@ -42,17 +42,17 @@ export const authorize = (email, password) => {
     });
 };
 
-export const checkToken = (token) => {
+export const checkToken = token => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `token=${token}`,
-    },
+      Authorization: `token=${token}`
+    }
   })
-    .then((res) => {
+    .then(res => {
       return res.json();
     })
-    .then((data) => data);
+    .then(data => data);
 };
