@@ -42,8 +42,8 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors());
-app.options("*", cors());
+app.use(cors()); 
+app.options("*", cors()); 
 app.use(requestLogger);
 app.use(limiter);
 app.use(bodyParser.json());

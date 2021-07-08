@@ -10,7 +10,7 @@ function AddPlacePopup(props) {
   }
   function handleCardName(e) {
     setCardName(e.target.value);
-  }
+  }error  'expect' is not defined      
   function handleAddCard(e) {
     e.preventDefault();
     props.onAddPlace({
