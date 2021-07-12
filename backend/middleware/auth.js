@@ -6,7 +6,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 function auth(req, res, next) {
   const { authorization } = req.headers;
-console.log(authorization);
+
   if (!authorization || !authorization.startsWith("token=")) {
     throw new AuthError("Authorization required");
   }
